@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡易計算機</title>
+
+    <style>
+        button {
+            width: 80px;
+            height: 50px;
+            font-size: 35px;
+        }
+
+
+
+        button:hover {
+            background-image: url('neko.jpg') ;
+            opacity:0.7 ;
+            filter:alpha(opacity=40)
+        }
+    </style>
+</head>
+
+<body>
+    <table align="center" style=" background-image: url('four.jpg');">
+        <tr>
+            <td colspan="4">               
+                <textarea id="showmath" rows="2" name="S1" cols="20" style="height: 2.5em; width: 15em ; font-size: xx-large;" disabled> </textarea>  
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><button aria-rowspan="2" onclick="clearall()">AC</button></td>
+            <td><button aria-rowspan="2" onclick="btnback()">Del</button></td>
+        </tr>
+
+        <tr>
+            <td><button id="btn1" onclick="btnclick(this)">1</button></td>
+            <td><button id="btn2" onclick="btnclick(this)">2</button></td>
+            <td> <button id="btn3" onclick="btnclick(this)">3</button></td>
+            <td><button onclick="btnicon('+')">+</button></td>
+        </tr>
+
+        <tr>
+            <td> <button id="btn4" onclick="btnclick(this)">4</button></td>
+            <td><button id="btn5" onclick="btnclick(this)">5</button></td>
+            <td> <button id="btn6" onclick="btnclick(this)">6</button></td>
+            <td><button onclick="btnicon('-')">-</button></td>
+        </tr>
+        <br>
+        <tr>
+            <td><button id="btn7" onclick="btnclick(this)">7</button></td>
+            <td><button id="btn8" onclick="btnclick(this)">8</button></td>
+            <td><button id="btn9" onclick="btnclick(this)">9</button></td>
+            <td><button onclick="btnicon('*')">*</button></td>
+        </tr>
+        <tr>
+            <td> <button id="btn." onclick="btnicon('.')">.</button></td>
+            <td><button id="btn0" onclick="btnclick(this)">0</button></td>
+            <td> <button onclick="numans('=')">=</button></td>
+            <td><button onclick="btnicon('/')">/</button></td>
+        </tr>
+    </table>
+
+
+
+
+    <script>
+    
+        function clearall() {
+            showmath.value = ""
+        }
+
+        function numans() {
+
+            var num = document.getElementById("showmath").value;   // 儲存當下TEXT運算式
+            document.getElementById("showmath").value = num + ' ='  + '\n'   + eval(num);  // 計算並將結果換行
+
+        }
+
+
+        function btnback() {
+
+            var exp = document.getElementById("showmath").value;        //先將當下輸出VAULE記錄下來
+            var x = exp.length - 1;                                     // 讓記錄下來長度 - 1 
+            exp = document.getElementById("showmath").value.slice(0, x);  // 給變數  取紀錄VAULE 到長度-1
+            document.getElementById("showmath").value = exp;       ///      將新變數給回原先VAULE值
+        }
+
+
+        function btnicon(icon) {
+            showmath.value += icon;
+        }
+
+
+        function btnclick(elm) {
+            showmath.value += elm.id.replace('btn', '')
+        }
+    </script>
+
+</body>
+
+</html>
