@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../_js/jquery-3.6.0.js"></script>
+
+    <!-- 10. 參考結果設定對應 css -->
+    <style>
+        div {
+            float: left;
+        }
+
+        .myhide{
+            visibility:  hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="cat1">
+        <img src="css/cat1.png" style="width: auto; height:300px;">
+        <p >貓咪</p>
+    </div>
+
+    <div id="cat2">
+        <img src="css/cat2.jpg" style="width: auto; height: 300px;">
+        <p >坦克貓</p>
+    </div>
+
+
+
+    <div id="cat3" class="">
+        <img src="css/bigcat.jpg" style="width: auto; height: 300px;">
+        <p>大優惠</p>
+    </div>
+
+    <!-- 20. 設定袋子，裡面裝一張圖片和一段文字 -->
+
+    <script>
+        $(function () {
+
+
+            $('p').hide();  // 將文字先隱藏
+
+            // $('div').on('mouseenter', function () {
+            //      // 滑鼠經過DIV的時候 DIV的P顯示一下
+            //      //  滑鼠經過THIS的時候 THIS裡面的P顯示一下
+            //     $(this).find('p').css('display', 'block');
+            //     // 滑鼠進入指到的物件 下找到 P  修改CSS 為可見
+            // })
+
+        
+            // $('div').on('mouseleave', function () {
+            //      // 滑鼠經過DIV的時候 DIV的P顯示一下
+            //      //  滑鼠經過THIS的時候 THIS裡面的P顯示一下
+            //     $(this).find('p').css('display', 'none');  /// 
+            // })
+
+        
+            // 方法B  將進入進出寫為屬性在同一 FUNCTION
+            $('div').on({
+                mouseenter:function(){
+                    $(this).find('p').css('display', 'block');
+                } ,
+                
+                mouseleave:function(){
+                    $(this).find('p').css('display', 'none');
+                }
+
+            })
+
+
+            // 30. 設定先將文字隱藏起來
+            //      滑鼠經過div的時候顯示，離開的時候隱藏
+            //    * mouseenter 和 mouseleave
+
+            // 寫法C
+            // $('div').on('mouseenter mouseleave' , function(){
+
+            //     $(this).find('p').toggleClass('myhide')
+            // })
+
+
+        });
+
+    </script>
+</body>
+
+</html>

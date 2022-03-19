@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvasLab" width="240" height="200" style="border:1px solid #000000;"></canvas>
+    <canvas id="canvasSmall" width="120" height="100" style="border:1px solid #000000;"></canvas>
+    <img id="imgView" width="120" height="100" style="border:1px solid #000000;"    />
+
+    <div>
+        <a id="aDownload" href="#" download="rabbit.png">Download</a>
+    </div>
+
+    <img id="imgRabbit" src="rabbit_240x200.jpeg" style="display: block;" title="NEKOPARA" />
+
+    <script>
+
+        window.onload = function init() {    // 載入完成後才執行FUNCTION
+
+            var c = document.getElementById("canvasLab");   /// 找到畫布
+            var ctx = c.getContext("2d");   //找到畫圖方式
+  
+
+
+            ctx.arc(120, 100, 80, 0* Math.PI , 2 * Math.PI ,false);   // 設定圓圈位置
+            //    arc (圓心X,圓心Y ,半徑 ,  從0開始 , 順時間繞2PI , 預設FALSE 順時鐘)
+
+            ctx.stroke();  /// 執行
+
+            ctx.clip();  /// 指定有效區域只有圓圈
+
+            ctx.drawImage(imgRabbit, 0, 0); /// 匯入圖片 指定擺放位置  
+
+
+
+            
+
+            var ctxSmall = canvasSmall.getContext("2d");
+            // ctxSmall.drawImage(canvasLab, 0, 0);
+            ctxSmall.drawImage(canvasLab, 0, 0, 240, 200, 0, 0, 120, 100);
+
+            //  ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+            //  匯入裁切的圖檔 並指定擺放位置
+
+
+            // var cs = document.getElementById("canvasSmall")
+            // var ctxs = cs.getContext("2d");
+            // ctxs.drawImage(imgRabbit, 0, 0 ,120 ,100); 
+            // // 匯入圖片 指定擺放位置  指定大小縮放 
+
+              // 圖片灰階
+            var imgData = ctxSmall.getImageData(0, 0, 120, 100);
+
+            console.log(imgData) ;
+
+            var data = imgData.data;
+            for (var i = 0; i < data.length; i += 4) {   ///一個像素4個位元組 所以+4
+                var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = avg; // red
+                data[i + 1] = avg; // green
+                data[i + 2] = avg; // blue
+            }
+
+
+            ctxSmall.putImageData(imgData, 0, 0);
+
+            console.log(canvasSmall.toDataURL("image/png"));   /// 將兔子圖檔轉SRC
+            imgView.src = canvasSmall.toDataURL("image/png");   /// 將IMG的屬性 匯入CANVAS的URL
+
+
+            aDownload.href = canvasSmall.toDataURL("image/png");
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <img src="css/tenor_1.gif" style=" 
+    left:100px ; position: relative;"  alt="" id="bigye">
+    <script>
+        
+            // $('#bigye').on('mouseenter', function () {
+            //     console.log('okkk')
+                // $('#bigye').css('transform', "rotateZ(90deg)");
+
+     
+       
+        $(function () {
+            var deg = 0 ;  // 初始角度為0
+            var flag = null;  // 
+
+            $('#bigye').on('mouseenter', function () {   // 當滑鼠進入物件觸發
+                
+               flag =  setInterval(function(){   //  設定變數接收 setinterval 
+                    
+                    deg += 5 ;   /// 每0.1 秒角度+5 
+                    $('#bigye').css('transform', `rotateZ(${deg}deg)`);
+                },100)
+                // $('#bigye').css('transform', "rotateZ( ?? deg)");  圖片旋轉?度
+
+            })
+
+
+            $('#bigye').on('mouseleave', function () {
+                
+                clearInterval(flag) ;  // 將有setinterval的變數規0停止 (離開時不旋轉)
+
+            })
+
+
+
+        //     // 10. 參考執行結果，條列所需的 樣式以及事件
+        //       a   onmouseenter / onmouseleave   當滑鼠進出物件觸發事件
+        //       Setinterval  多久時間觸發
+        //     //      * 旋轉圖片css: transform:rotateZ(90deg)
+        //       
+
+        });
+    </script>
+</body>
+
+</html>

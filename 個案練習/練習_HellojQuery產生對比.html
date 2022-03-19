@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../_js/jquery-3.6.0.js"></script>
+
+    <style>
+        /* div{
+            margin-top: 100px;
+            margin-bottom: 100px;
+            font-size: 72px;
+            text-align: center;
+        }
+
+        #jq{
+         color: white;
+         background-color: black;
+        width: 20%;
+        margin: auto;
+        } */
+
+
+    </style>
+</head>
+
+<body>
+    <div id="demo"> 
+        <div id="he">Hello</div>
+        <div id="jq">jQuery</div>
+
+        <h1>
+            <span>hsl(0, 100%, 50%)</span>
+            <span>hsl(180, 100%, 50%)</span>
+        </h1>
+
+    </div>
+
+
+
+    <!-- <p>底下是顏色設定範例:</p>
+    <span style="color: hsl(0, 100%, 50%);">Apple</span>
+    <span style="color: hsl(180, 100%, 50%);">Bee</span> -->
+
+    <script>
+        $('#demo').css({   ///純CSS配置
+            'margin' : '250px 0' ,
+            'text-align' :'center' ,
+
+        })
+
+        $('#demo>div').css({
+            'font-size' : '60px' ,
+            'display' : 'inline-block' ,
+            'width' : '30%' ,
+            'padding' : '20px 5px ' 
+        })
+
+
+        // 10. hsl  (顏色0~360 , 飽度0~100%  ,亮度 0~100% )
+
+        // 20.  對比色 / 互補色  如何產生?
+        //   ANS  先隨機產生數字   然後對比 隨機+180
+
+        var temp = Math.floor(Math.random()*361)   // 產生顏色0~360
+        var fcolor = `hsl(${temp} , 80% , 70%)` ;  /// 定義顏色
+        var scolor = `hsl(${(temp + 180) % 360}  , 80% , 70%)` ;  // 定義互補色
+
+        $('#he').css('color' , fcolor).css('background-color' , scolor) ;
+        $('#jq').css('color' , scolor).css('background-color' , fcolor) ;
+
+        $('body').css('background-color' , fcolor) ;
+
+        $('#demo>h1>span').eq(1).css('color' , fcolor)
+        $('#demo>h1>span').eq(0).css('color' , scolor)
+       
+        $('h1').css('background-color' , 'white') ;
+
+        $('#demo>h1>span').eq(0).text(fcolor);
+        $('#demo>h1>span').eq(1).text(scolor);
+       
+       
+        // 30. 網頁上面需要那些元素
+        //   ANS
+
+
+        // * 模仿 Hello Color 
+        //   https://jxnblk.github.io/hello-color/?c=f7da2d
+        //   做出一個隨機產生 對比色|互補色 的網頁
+
+    </script>
+
+</body>
+
+</html>

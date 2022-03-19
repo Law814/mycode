@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+
+    <input type="checkbox" id="demo"> All
+    <input type="checkbox" name="demo" id='apple'> Apple
+    <input type="checkbox" name="demo" id="bee"> Bee
+    <input type="checkbox" name="demo" id="cat"> Cat
+    <!--  -->
+</body>
+<script>
+
+    // 10. 當 All 被勾選的時候，其餘 checkbox 也會被勾選起來
+    //   * 還有其他未列出的勾選連動，請一併考慮
+
+    $('input').change(function () {
+        // console.log(this) ;
+
+        console.log(this.name);    // 變化的時候SHOW I D / name
+        // console.log($(this).prop('id'));  同上
+
+        // console.log(this.checked);   /// 確認選取到物件變化是否為CHECK.布林值
+
+        ///  選擇ALL 的時候將所有 CHECK BOX 選取
+        $(`input[name='${this.id}']`).prop('checked', this.checked);
+        // 當NAME = 被選取的ID 時 將NAME 的CHECK 改為被選取
+
+
+
+        // 選擇其他 取消ALL 的CHECK BOX
+        // 當後面三個選項被勾選的時候 ALL 才要被選取 ==>
+        // 選單的數量 Length  等於: 被選取的數量 checked 的 時候 length 
+        $(`input[id='${this.name}']`)
+        .prop('checked', 
+        $(`input[name='${this.name}']`).length == 
+        $(`input[name='${this.name}']:checked`).length) ;
+
+
+
+    })
+
+
+
+
+</script>
+
+</html>

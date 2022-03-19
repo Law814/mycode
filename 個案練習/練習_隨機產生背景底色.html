@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../_js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <!-- <button id="btn1" onclick="btn1()">改變背景色</button> -->
+
+
+    <script>
+
+        // function btn1(){
+        //     var temp = Math.random();
+        // var r = Math.floor(Math.random()*256);  /// 隨機生成色區
+        // var g = Math.floor(Math.random()*256);
+        // var b = Math.floor(Math.random()*256);
+
+        // $('body').css('background-color', `rgb(${r},${g},${b})`);
+        // }
+
+        // 10. 用 JavaScript 改變body背景底色
+        // document.body.style.backgroundColor = 'blue' ;
+
+        // 20. 用 jQuery 改變body背景底色
+        // $('body').css('background-color', 'rgb(0,0,0)');
+
+        // 30. 隨機產生背景底色
+
+
+        // 40. 點選按鈕產生背景底色
+
+        // 50. 加入 setInterval 讓畫面每秒更新上述設定
+        setInterval(function () {
+
+            var temp = Math.random();
+            var r = Math.floor(Math.random()*256);  /// 隨機生成色區
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+
+            $('body').css('background-color', `rgb(${r},${g},${b})`);
+
+        }, 1000)
+
+
+
+    </script>
+</body>
+
+</html>
